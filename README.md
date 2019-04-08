@@ -1,2 +1,2 @@
 # Tateti-vs-CPU
-Un juego simple de tatetí con la posibilidad de jugar contra la maquina
+Un juego simple de tatetí para jugar contra la maquina.
