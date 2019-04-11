@@ -178,7 +178,7 @@ public class JuegoTateti {
             for(int i = 0; i < 4; ++i)
                 if(tablero[pares[(num + i) % 4]] == -1)
                     return pares[(num + i) % 4];
-            for(int i = 1; i < 4; ++i)
+            for(int i = 0; i < 4; ++i)
                 if(tablero[impares[(num + i) % 4]] == -1)
                     return impares[(num + i) % 4];
         }
