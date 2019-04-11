@@ -26,6 +26,9 @@ public class VentanaTateti extends JFrame implements ActionListener, ItemListene
     private JRadioButton rbCPU;
     private JLabel lblResultado;
     
+    ImageIcon imagen1;
+    ImageIcon imagen2;
+    
     private JuegoTateti juego;
     
     //Un panel con un GridLayout de 3x3 con un botón en cada lugar.
@@ -93,15 +96,18 @@ public class VentanaTateti extends JFrame implements ActionListener, ItemListene
         add(btnJugar);
         setVisible(true);
         
+        imagen1 = getImagen(btnTateti[0][0],"/recursos/circulo.png");
+        imagen2 = getImagen(btnTateti[0][0],"/recursos/cruz.png");
+        
         juego = new JuegoTateti();
     }
     public void actualizar() {
         int[] tablero = juego.getTablero();
         for(int i = 0; i < 9; ++i) {
             if(tablero[i] == 0)
-                btnSetImagen(btnTateti[i/3][i%3],"/recursos/circulo.png");
+                btnTateti[i/3][i%3].setIcon(imagen1);
             else if(tablero[i] == 1)
-                btnSetImagen(btnTateti[i/3][i%3],"/recursos/cruz.png");      
+                btnTateti[i/3][i%3].setIcon(imagen2);      
         }
         if(juego.jugadorGana() == true) {
             lblResultado.setText("Jugador 1 [" + juego.getPuntos1() + " - " +
@@ -124,12 +130,12 @@ public class VentanaTateti extends JFrame implements ActionListener, ItemListene
             }
         }
     }
-    public void btnSetImagen(JButton boton, String nombreArchivo) {
+    public ImageIcon getImagen(JButton boton, String nombreArchivo) {
         ImageIcon imagen = new ImageIcon(getClass().getResource(nombreArchivo));
         int alto = boton.getHeight() / 2;
         int ancho = boton.getWidth() / 2;
         ImageIcon imgBoton = new ImageIcon(imagen.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
-        boton.setIcon(imgBoton);
+        return imgBoton;
     }
     //Manejamos los eventos de hacer click en los botones.
     @Override
