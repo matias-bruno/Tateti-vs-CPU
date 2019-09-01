@@ -8,7 +8,7 @@ import java.awt.GridLayout;
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.UIManager;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+//import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import java.awt.Color;
 import java.awt.Image;
 
@@ -62,10 +62,10 @@ public class VentanaTateti extends JFrame implements ActionListener, ItemListene
         rbDificil = new JRadioButton("Difícil");
         rbHumano = new JRadioButton("Humano", true);
         rbCPU = new JRadioButton("CPU");
-        rbFacil.setBounds(100,40,50,30);
-        rbDificil.setBounds(100,65,50,30);
-        rbHumano.setBounds(425,40,80,30);
-        rbCPU.setBounds(425,65,50,30);
+        rbFacil.setBounds(100,40,80,30);
+        rbDificil.setBounds(100,65,80,30);
+        rbHumano.setBounds(425,40,100,30);
+        rbCPU.setBounds(425,65,80,30);
         rbFacil.addItemListener(this);
         rbDificil.addItemListener(this);
         rbHumano.addItemListener(this);
@@ -90,8 +90,8 @@ public class VentanaTateti extends JFrame implements ActionListener, ItemListene
         btnJugar = new JButton("Jugar");
         btnJugar.setBounds(250,50,100,30);
         btnJugar.addActionListener(this);
-        lblResultado = new JLabel("Jugador 1 [0 - 0] Jugador 2");
-        lblResultado.setBounds(235,15,150,30);
+        lblResultado = new JLabel("J1 [0 - 0] J2");
+        lblResultado.setBounds(265,15,150,30);
         add(lblResultado);
         add(btnJugar);
         setVisible(true);
@@ -110,8 +110,8 @@ public class VentanaTateti extends JFrame implements ActionListener, ItemListene
                 btnTateti[i/3][i%3].setIcon(imagen2);      
         }
         if(juego.jugadorGana() == true) {
-            lblResultado.setText("Jugador 1 [" + juego.getPuntos1() + " - " +
-                                            juego.getPuntos2() + "] Jugador 2");
+            lblResultado.setText("J1 [" + juego.getPuntos1() + " - " +
+                                            juego.getPuntos2() + "] J2");
             int g = juego.getGanador();
             if(g != -1) {
                 JOptionPane.showMessageDialog(null,"El ganador es jugador nro " + g + "!");
@@ -185,7 +185,8 @@ public class VentanaTateti extends JFrame implements ActionListener, ItemListene
     }
     
     public static void main(String[] args) throws Exception {
-        UIManager.setLookAndFeel(new WindowsLookAndFeel());
+    	//Esto no sirve para Linux el look and feel de Windows
+        //UIManager.setLookAndFeel(new WindowsLookAndFeel());
         /*SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
